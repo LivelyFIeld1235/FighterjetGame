@@ -1,0 +1,222 @@
+import random
+a = ["rapidfighter","precision","destroyer"]
+
+#rapidfire -> #precision ship -> #destroyer
+
+def find(a,char):
+    for ind in range(len(a)):
+        if char == a[ind]:
+            return ind
+def validate(s):
+    e = ["EXIT","TERMINATE","QUIT"]
+    print("to exit press".title())
+    print("+______________________________+")
+    [print("\t",x.capitalize()) for x in e]
+    print("valid spaceships include".title())
+    print("+______________________________+")
+    [print("\t",x.capitalize()) for x in a]
+    _s = input(s)
+
+    if _s.upper() in e:
+        quit()
+    elif _s.lower() in a:
+        return _s.lower()
+    else:
+        validate()
+
+def generate():
+    return random.choice(a)
+
+def compare(player,cpu):
+    global a;
+    winningconditions = [[0,1],[1,2],[2,0]]
+    losingconditions = [x[::-1] for x in winningconditions]
+    if player == cpu:
+        return "tie"
+    elif [find(a,player),find(a,cpu)] in winningconditions:
+        return "win"
+    elif [find(a,player),find(a,cpu)] in winningconditions:
+        return "lose"
+    else:
+        return "something went wrong"
+def displayplayer(s):
+    global a
+    match a:
+        case _ if s==a[0]:
+            print(
+"""
+         __..--''.                           __..--'',
+     .-''      / :                       .-''      /  :
+    ;         /  :                      ;\        /   :
+   : \       /    :                    :  \      /     :
+  :   \     /     :                   :    \    /      :
+  ;    \   /       :       _____      ;     \  /        :
+ :      \ /        :     .'     '.   :       \/         :
+ ;      .--.        :   /   .----.\ /       .--.         :
+:______|    |_______:''|   | \.-./||''-----'--. |________:
+:      |    |       ;..|   | /'-'\||..-----.--' |SSt     ;
+:       '--'       :    \   '----'/ ',      '--'        :
+ :      / \        ;     '._____.'   :      / \         ;
+ :     /   \      :                  :     /   \       :
+ ',   /     \     ;                  ',   /     \      ;
+  :  /       \   :   Rapidfighter     :  /       \    :
+  './_        \ ;                     './_        \  ;
+      ''--..___\                          ''--..___\ 
+""")
+        case _ if s==a[1]:
+            print("""
+                __
+                |  '>._
+                |_,'  .`-.
+                |/  ,',-`.`.
+                : 0 \| (`,\_/
+                 \__ `-:_\,.\-.______
+                 /  ``--._(  `. \`.  `.`-. _
+           __ .-'     `-.  `.  `.\ `.  `. `.
+         ,'.-`.`--.__     `. `.  \. `.  `. \)
+       ,-'._    `-._ `-..__ :  `. \ `__`.--`.
+      |     `-.     `.  `,.`--.__`.\/==\-`---`
+      |        `-.   _`-'._`._   `-:\--'`.     
+     _/`,.__     _`-'     ,'  ;.    `.    `.`.  
+  _.|/,' \  `--.'_  `-._.' ,-'  `._   `._   `.;  
+ \  `_.-'         `-.__ ,-'        `,   `:.   `.  
+  `-'                  `-.__       `.`.   `:.   `. 
+                            `-.__    `'`.   `:.   `.
+                                 `-.__   `._   `.   `
+              precision              `-.__ `.   `.   
+                                           `-.:.   `.  
+                                               ,`:._ `. 
+                                              `. _||`:.`.
+                                                `.`.`_: `'
+                                                  `-'
+""")
+        case _ if s==a[2]:
+            print(
+"""
+                       __
+                     .,' ,'`.
+                   ,'/  /    `.           
+                  / :__:       
+                 /  /  `.       
+                : ,'`.,' \_      :
+          __    |/`-._\ ,' `.    |
+         /, ``;'/ _   //   ,-'-._|
+         `-..: :`'-''/:   :_,-..__
+             : |._.-: :   :-.' -._``--.._
+              `|._.-|  \   `-'-..__ ,-' /
+               ;    ;_.-`._,'    | ``--'
+              :`..-'|   _.'      ;
+              |-._| '--/.       /
+              | | __  / |      /
+              | |    :  :    ,'
+              | |-.  |`._\_.'
+              | | |  ;
+              |-' '-:
+             '|,(-) |   
+              |__..-'
+""")
+def displaycomp(s):
+    global a
+    match a:
+        case _ if s == a[0]:
+            print(
+                """
+                         __..--''.                           __..--'',
+                     .-''      / :                       .-''      /  :
+                    ;         /  :                      ;\        /   :
+                   : \       /    :                    :  \      /     :
+                  :   \     /     :                   :    \    /      :
+                  ;    \   /       :       _____      ;     \  /        :
+                 :      \ /        :     .'     '.   :       \/         :
+                 ;      .--.        :   /   .----.\ /       .--.         :
+                :______|    |_______:''|   | \.-./||''-----'--. |________:
+                :      |    |       ;..|   | /'-'\||..-----.--' |SSt     ;
+                :       '--'       :    \   '----'/ ',      '--'        :
+                 :      / \        ;     '._____.'   :      / \         ;
+                 :     /   \      :                  :     /   \       :
+                 ',   /     \     ;                  ',   /     \      ;
+                  :  /       \   :   Rapidfighter     :  /       \    :
+                  './_        \ ;                     './_        \  ;
+                      ''--..___\                          ''--..___ 
+                """)
+        case _ if s == a[1]:
+            print("""
+                    __
+                    |  '>._
+                    |_,'  .`-.
+                    |/  ,',-`.`.
+                    : 0 \| (`,\_
+                     \__ `-:_\,.\-.______
+                     /  ``--._(  `. \`.  `.`-. _
+               __ .-'     `-.  `.  `.\ `.  `. `.
+             ,'.-`.`--.__     `. `.  . `.  `. \)
+           ,-'._    `-._ `-..__ :  `. \ `__`.--`.
+          |     `-.     `.  `,.`--.__`.\/==\-`---
+          |        `-.   _`-'._`._   `-:\--'`.     
+         _/`,.__     _`-'     ,'  ;.    `.    `.`.  
+      _.|/,' \  `--.'_  `-._.' ,-'  `._   `._   `.;  
+     \  `_.-'         `-.__ ,-'        `,   `:.   `.  
+      `-'                  `-.__       `.`.   `:.   `. 
+                                `-.__    `'`.   `:.   `.
+                                     `-.__   `._   `.   `
+                  precision              `-.__ `.   `.   
+                                               `-.:.   `.  
+                                                   ,`:._ `. 
+                                                  `. _||`:.`.
+                                                    `.`.`_: `'
+                                                      `-'
+    """)
+        case _ if s == a[2]:
+            print("""
+                                       __
+                                     .,' ,'`.
+                                   ,'/  /    `.           
+                                  / :__:       
+                                 /  /  `.       
+                                : ,'`.,' \_      :
+                          __    |/`-._\ ,' `.    |
+                         /, ``;'/ _   //   ,-'-._|
+                         `-..: :`'-''/:   :_,-..__
+                             : |._.-: :   :-.' -._``--.._
+                              `|._.-|  \   `-'-..__ ,-' /
+                               ;    ;_.-`._,'    | ``--'
+                              :`..-'|   _.'      ;
+                              |-._| '--/.       /
+                              | | __  / |      /
+                              | |    :  :    ,'
+                              | |-.  |`._\_.'
+                              | | |  ;
+                              |-' '-:
+                             '|,(-) |   
+                              |__..-'
+                """)
+def main():
+    gameloop = True
+    counter = 0
+    while counter != 5 and gameloop:
+        var = validate("Enter a valid spaceship")
+        randm = generate()
+        check = compare(var.lower(),randm.lower()).lower()
+        print(check)
+        if check == "tie":
+            print("it's a Tie")
+            displayplayer(var)
+            print()
+            displaycomp(randm)
+            gameloop = True
+        elif check == "win":
+            displayplayer(var)
+            print()
+            displaycomp(randm)
+            print("You win")
+
+        elif check == "lose":
+            displayplayer(var)
+            print()
+            displaycomp(randm)
+            print("You lose!")
+
+        else:
+            print("something went wrong")
+        counter += 1
+main();
